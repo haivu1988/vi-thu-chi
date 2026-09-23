@@ -1,0 +1,81 @@
+{
+  "entities": {
+    "users": {
+      "title": "User",
+      "description": "User profile and sync settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["uid"]
+    },
+    "transactions": {
+      "title": "Transaction",
+      "description": "Individual income or expense entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["income", "expense"] },
+        "amount": { "type": "number" },
+        "categoryId": { "type": "string" },
+        "date": { "type": "string" },
+        "account": { "type": "string" },
+        "note": { "type": "string" },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["id", "userId", "type", "amount", "categoryId", "date"]
+    },
+    "budgets": {
+      "title": "Budget",
+      "description": "Monthly spending budget per category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "month": { "type": "string" },
+        "limitAmount": { "type": "number" }
+      },
+      "required": ["id", "userId", "categoryId", "month", "limitAmount"]
+    },
+    "categories": {
+      "title": "Category",
+      "description": "Custom transaction category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["income", "expense"] },
+        "icon": { "type": "string" },
+        "color": { "type": "string" }
+      },
+      "required": ["id", "userId", "name", "type"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "entity": "users",
+      "description": "Private user profile"
+    },
+    "/users/{userId}/transactions/{txId}": {
+      "entity": "transactions",
+      "description": "User income and expense transactions"
+    },
+    "/users/{userId}/budgets/{budgetId}": {
+      "entity": "budgets",
+      "description": "User monthly category budgets"
+    },
+    "/users/{userId}/categories/{catId}": {
+      "entity": "categories",
+      "description": "User custom categories"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Sổ Thu Chi Cá Nhân & Thống Kê Biểu Đồ",
+  "description": "Ứng dụng quản lý thu chi cá nhân trực quan với biểu đồ thống kê thu nhập và chi tiêu hàng tháng, quản lý ngân sách và báo cáo tài chính chi tiết.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
